@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-status-todo: #6b7280;
+  --color-status-in-progress: #2563eb;
+  --color-status-completed: #16a34a;
+
+  --color-priority-low: #16a34a;
+  --color-priority-medium: #d97706;
+  --color-priority-high: #dc2626;
+
+  --color-project-active: #2563eb;
+  --color-project-completed: #16a34a;
+  --color-project-archived: #6b7280;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900 antialiased;
+}

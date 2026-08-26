@@ -1,0 +1,19 @@
+{
+  "name": "taskflow",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TaskFlow - full-stack task management application",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,green \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+    "build": "npm run build --workspace backend && npm run build --workspace frontend",
+    "test": "npm run test --workspace backend --if-present -- --run && npm run test --workspace frontend --if-present -- --run",
+    "lint": "npm run lint --workspace backend --if-present && npm run lint --workspace frontend --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "9.1.0"
+  }
+}

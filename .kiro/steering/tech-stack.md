@@ -43,6 +43,7 @@ MongoDB runs separately, either locally or as a hosted cluster. It is not part o
 | Validation | Zod | Request body, params, and query validation in middleware, before any controller runs. |
 | CORS | cors | The Vite dev server runs on a different origin than the API in development. |
 | Logging | morgan | Request logging in development. |
+| Env loading | dotenv | Loads `backend/.env` into `process.env` before `src/config/env.ts` validates it. |
 | Dev reload | tsx watch | Runs TypeScript directly with reload, no separate build step during development. |
 
 ## Testing and quality
@@ -58,7 +59,7 @@ MongoDB runs separately, either locally or as a hosted cluster. It is not part o
 
 ## Versions
 
-Write code against the current majors: React 19, Vite 7, Tailwind CSS 4, Express 5, Mongoose 8, TypeScript 5.
+Write code against the current majors: React 19, Vite 8, Tailwind CSS 4, Express 5, Mongoose 8, TypeScript 5.
 
 Exact versions are pinned in `package.json` at scaffold time, not here. This document must not carry version numbers that will drift out of date.
 
@@ -109,6 +110,7 @@ Rules:
 
 - Every workspace that reads env vars ships a committed `.env.example` listing every variable with a safe placeholder value.
 - `.env` and `.env.*` (except `.env.example`) are gitignored. Never commit one.
+- The backend loads `.env` with `dotenv`, called once at the top of `src/config/env.ts` before anything reads `process.env`. Node's built-in `--env-file` flag was tried first but doesn't compose cleanly through `NODE_OPTIONS` (it's on the flag's own deny-list) or through tsx's argument parsing, so `dotenv` is the pragmatic choice here. Vite loads `frontend/.env` itself; no extra step needed there.
 - The backend validates its environment with Zod at startup, in `src/config/env.ts`, and exits with a clear message if a required variable is missing. No `process.env` access anywhere else in the codebase.
 - Never put a secret in a `VITE_`-prefixed variable. Those are compiled into the client bundle and are public.
 

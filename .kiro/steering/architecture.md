@@ -111,7 +111,7 @@ Backend:
 Frontend:
 
 1. A component never calls `fetch` or `apiClient` directly. It goes through a feature hook.
-2. A feature never imports from a sibling feature. If `tasks` and `projects` both need something, it moves to `components/ui`, `lib`, `hooks`, or `types`.
+2. A feature never imports from a sibling feature, with one sanctioned exception: the project detail page renders the task list and the create-task dialog from the tasks feature, because PRD §10 requires project details to show its tasks and offer creating one from there. That page is the one place this crosses. For every other case, if `tasks` and `projects` both need something, it moves to `components/ui`, `lib`, `hooks`, or `types`.
 3. Shared presentational primitives live in `components/ui` and contain no data fetching and no domain knowledge. A `Badge` does not know what a task status is; the caller passes it a variant.
 4. Domain types live in `types/` and are imported. Never redeclare a `Task` or `Project` shape inline, and never define a second competing version of one in a feature folder.
 5. Status and priority display labels come from the single label map. No hardcoded `"In Progress"` string in a component. See `#product` for the value tables.
