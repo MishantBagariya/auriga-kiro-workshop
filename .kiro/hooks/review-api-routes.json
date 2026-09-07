@@ -1,0 +1,13 @@
+{
+  "name": "Review API Route Changes",
+  "version": "1.0.0",
+  "description": "Ask agent to verify API routes follow conventions when route files are edited",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["**/app/api/**/*.ts"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check that this API route follows our conventions: consistent response shape ({ data, error, message }), proper HTTP status codes, Zod validation on request body, try/catch error handling, and Prisma error code handling."
+  }
+}

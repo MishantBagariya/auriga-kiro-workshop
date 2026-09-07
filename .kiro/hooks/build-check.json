@@ -1,0 +1,12 @@
+{
+  "name": "Build Check After Task",
+  "version": "1.0.0",
+  "description": "Run TypeScript build check after a spec task is completed",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npx tsc --noEmit"
+  }
+}

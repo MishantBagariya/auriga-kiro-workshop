@@ -1,0 +1,13 @@
+{
+  "name": "Review Write Operations",
+  "version": "1.0.0",
+  "description": "Verify write operations follow project coding standards before execution",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, verify: 1) It follows the naming convention (kebab-case files, PascalCase components), 2) It's placed in the correct directory per our structure.md, 3) It uses TypeScript strict mode conventions (no 'any' types). If all checks pass, proceed."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Validate Prisma Schema",
+  "version": "1.0.0",
+  "description": "Validate Prisma schema when it is modified",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["**/schema.prisma"]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npx prisma validate"
+  }
+}
