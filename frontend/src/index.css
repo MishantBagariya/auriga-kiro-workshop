@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+html {
+    font-size: 16.5px;
+}
+
+button,
+[role="button"],
+select {
+    cursor: pointer;
+}
